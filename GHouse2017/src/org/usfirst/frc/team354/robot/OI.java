@@ -1,7 +1,10 @@
 package org.usfirst.frc.team354.robot;
 
+import org.usfirst.frc.team354.robot.commands.StartIntake;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 /**
@@ -41,6 +44,8 @@ public class OI {
 	
 	public OI() {
 		mainStick = new Joystick(RobotMap.MAIN_JOYSTICK);
+		
+		getButton(RobotMap.MAIN_JOYSTICK, 1).whenPressed(new StartIntake());
 	}
 	
 	public double getMainStickX() {
@@ -49,5 +54,19 @@ public class OI {
 	
 	public double getMainStickY() {
 		return mainStick.getY();
+	}
+	
+	public double getMainStickThrottle() {
+		return mainStick.getZ();
+	}
+	
+	public JoystickButton getButton(int stick, int button) {
+		switch (stick) {
+			case RobotMap.MAIN_JOYSTICK:
+				return new JoystickButton(mainStick, button);
+				
+			default: 
+				return null;
+		}
 	}
 }

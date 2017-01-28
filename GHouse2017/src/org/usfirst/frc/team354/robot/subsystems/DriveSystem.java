@@ -8,6 +8,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -42,7 +43,8 @@ public class DriveSystem extends Subsystem {
 		
 		d_driveSystem = new RobotDrive(d_leftMaster, d_rightMaster);
 		
-		// TBD - If need be, invert motors
+		d_driveSystem.setInvertedMotor(MotorType.kRearLeft, true);
+		d_driveSystem.setInvertedMotor(MotorType.kRearRight, true);
 	}
 
 

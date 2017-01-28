@@ -9,4 +9,16 @@ public class Constants {
 		public static final int CAN_ID_DRIVE_RIGHT_SLAVE = 20;
 	}
 	
+	//=== IntakeSystem ===
+	public static final class IntakeSystemConstants {
+		public static final int CAN_ID_INTAKE_MOTOR = 23;
+		public static final double INTAKE_SPEED = 0.75;
+	}
+	
+	//=== ShooterSystem ===
+	public static final class ShooterSystemConstants {
+		public static final int CAN_ID_SHOOTER_MASTER = 21;
+		public static final int CAN_ID_SHOOTER_SLAVE = 22;
+	}
+	
 }
