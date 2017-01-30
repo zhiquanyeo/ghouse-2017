@@ -17,5 +17,5 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	public static final int MAIN_JOYSTICK = 1;
+	public static final int MAIN_JOYSTICK = 0;
 }

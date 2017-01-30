@@ -45,7 +45,7 @@ public class OI {
 	public OI() {
 		mainStick = new Joystick(RobotMap.MAIN_JOYSTICK);
 		
-		getButton(RobotMap.MAIN_JOYSTICK, 1).whenPressed(new StartIntake());
+		getButton(RobotMap.MAIN_JOYSTICK, 1).whileHeld(new StartIntake());
 	}
 	
 	public double getMainStickX() {
