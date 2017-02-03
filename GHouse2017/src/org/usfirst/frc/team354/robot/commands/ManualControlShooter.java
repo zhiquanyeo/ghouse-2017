@@ -21,7 +21,7 @@ public class ManualControlShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double rawVal = Robot.oi.getMainStickThrottle();
+    	double rawVal = 0; // TBD - Do we still need this?
     	rawVal += 1.0; // get to 0 - 2
     	rawVal /= 2.0; // 0 - 1.0;
     	Robot.shooter.start(rawVal);

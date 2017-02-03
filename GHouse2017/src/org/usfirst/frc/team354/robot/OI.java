@@ -3,7 +3,6 @@ package org.usfirst.frc.team354.robot;
 import org.usfirst.frc.team354.robot.commands.StartIntake;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
@@ -40,30 +39,31 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	private final Joystick mainStick;
+	private final Joystick mainGamepad;
 	
 	public OI() {
-		mainStick = new Joystick(RobotMap.MAIN_JOYSTICK);
+		mainGamepad = new Joystick(Constants.JoystickPorts.DRIVER_GAMEPAD_ID);
 		
-		getButton(RobotMap.MAIN_JOYSTICK, 1).whileHeld(new StartIntake());
+		getButton(Constants.JoystickPorts.DRIVER_GAMEPAD_ID, 1).whileHeld(new StartIntake());
 	}
 	
-	public double getMainStickX() {
-		return mainStick.getX();
+	public double getDriverGamepadLeftX() {
+		return mainGamepad.getRawAxis(Constants.XBoxButtonMap.LEFT_STICK_X_AXIS);
 	}
-	
-	public double getMainStickY() {
-		return mainStick.getY();
+	public double getDriverGamepadLeftY() {
+		return mainGamepad.getRawAxis(Constants.XBoxButtonMap.LEFT_STICK_Y_AXIS);
 	}
-	
-	public double getMainStickThrottle() {
-		return mainStick.getZ();
+	public double getDriverGamepadRightX() {
+		return mainGamepad.getRawAxis(Constants.XBoxButtonMap.RIGHT_STICK_X_AXIS);
+	}
+	public double getDriverGamepadRightY() {
+		return mainGamepad.getRawAxis(Constants.XBoxButtonMap.RIGHT_STICK_Y_AXIS);
 	}
 	
 	public JoystickButton getButton(int stick, int button) {
 		switch (stick) {
-			case RobotMap.MAIN_JOYSTICK:
-				return new JoystickButton(mainStick, button);
+			case Constants.JoystickPorts.DRIVER_GAMEPAD_ID:
+				return new JoystickButton(mainGamepad, button);
 				
 			default: 
 				return null;
