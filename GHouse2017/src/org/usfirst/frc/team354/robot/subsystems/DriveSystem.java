@@ -17,6 +17,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Consists of a left/right gearbox, each having 2 motors
  * One motor per side will be designated as the master, and
  * the other as the slave (set to Follower mode)
+ * 
+ * The default behavior of this subsystem is to rely on operator control
+ * (See setDefaultCommand(new OperatorArcadeDrive) )
+ * This allows the drive system to respond to joystick movements without
+ * any additional commands.
  */
 public class DriveSystem extends Subsystem {
 	
