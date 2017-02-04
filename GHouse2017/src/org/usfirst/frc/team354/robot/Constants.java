@@ -4,6 +4,7 @@ public class Constants {
 	//=== Joystick Ports ===
 	public static final class JoystickPorts {
 		public static final int DRIVER_GAMEPAD_ID = 0;
+		public static final int AUX_GAMEPAD_ID = 1;
 	}
 	
 	//=== General ===
@@ -15,17 +16,17 @@ public class Constants {
 		public static final int LEFT_TRIGGER = 2;
 		public static final int RIGHT_TRIGGER = 3;
 		
-		public static final int A_BUTTON = 0;
-		public static final int B_BUTTON = 1;
-		public static final int X_BUTTON = 2;
-		public static final int Y_BUTTON = 3;
-		public static final int LEFT_SHOULDER = 4;
-		public static final int RIGHT_SHOULDER = 5;
-		public static final int BACK_BUTTON = 6;
-		public static final int START_BUTTON = 7;
+		public static final int A_BUTTON = 1;
+		public static final int B_BUTTON = 2;
+		public static final int X_BUTTON = 3;
+		public static final int Y_BUTTON = 4;
+		public static final int LEFT_SHOULDER = 5;
+		public static final int RIGHT_SHOULDER = 6;
+		public static final int BACK_BUTTON = 7;
+		public static final int START_BUTTON = 8;
 		
-		public static final int LEFT_STICK_BUTTON = 8;
-		public static final int RIGHT_STICK_BUTTON = 9;
+		public static final int LEFT_STICK_BUTTON = 9;
+		public static final int RIGHT_STICK_BUTTON = 10;
 	}
 	
 	//=== DriveSystem ===
@@ -39,7 +40,7 @@ public class Constants {
 	//=== IntakeSystem ===
 	public static final class IntakeSystemConstants {
 		public static final int CAN_ID_INTAKE_MOTOR = 23;
-		public static final double INTAKE_SPEED = 0.75;
+		public static final double INTAKE_SPEED = -0.75;
 	}
 	
 	//=== ShooterSystem ===

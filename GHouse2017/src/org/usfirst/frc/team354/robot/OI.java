@@ -1,6 +1,9 @@
 package org.usfirst.frc.team354.robot;
 
+import org.usfirst.frc.team354.controls.XBox360Controller;
+import org.usfirst.frc.team354.robot.commands.StartClimb;
 import org.usfirst.frc.team354.robot.commands.StartIntake;
+import org.usfirst.frc.team354.robot.commands.ToggleShooter;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -39,12 +42,20 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	private final Joystick mainGamepad;
+	private final XBox360Controller mainGamepad;
+	private final XBox360Controller auxGamepad;
+	private final ToggleShooter d_shooter;
 	
 	public OI() {
-		mainGamepad = new Joystick(Constants.JoystickPorts.DRIVER_GAMEPAD_ID);
+		mainGamepad = new XBox360Controller(Constants.JoystickPorts.DRIVER_GAMEPAD_ID);
+		auxGamepad = new XBox360Controller((Constants.JoystickPorts.AUX_GAMEPAD_ID));
+		d_shooter = new ToggleShooter();
+	
+		auxGamepad.getRightTriggerButton().whileHeld(new StartIntake());
+		auxGamepad.getLeftTriggerButton().whileHeld(new StartClimb());
 		
-		getButton(Constants.JoystickPorts.DRIVER_GAMEPAD_ID, 1).whileHeld(new StartIntake());
+		auxGamepad.getAButton().whenPressed(d_shooter);
+		
 	}
 	
 	public double getDriverGamepadLeftX() {

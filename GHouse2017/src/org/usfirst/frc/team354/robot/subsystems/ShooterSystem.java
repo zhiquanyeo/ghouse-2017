@@ -18,6 +18,8 @@ public class ShooterSystem extends Subsystem {
 	
 	private CANTalon d_intake;
 	
+	private boolean d_shooterOn;
+	
 	public ShooterSystem() {
 		d_shooterMaster = new CANTalon(Constants.ShooterSystemConstants.CAN_ID_SHOOTER_MASTER);
 		d_shooterSlave = new CANTalon(Constants.ShooterSystemConstants.CAN_ID_SHOOTER_SLAVE);
@@ -26,6 +28,7 @@ public class ShooterSystem extends Subsystem {
 		
 		d_shooterSlave.changeControlMode(TalonControlMode.Follower);
 		d_shooterSlave.set(Constants.ShooterSystemConstants.CAN_ID_SHOOTER_MASTER);
+		d_shooterOn = false;
 	}
 
     // Put methods for controlling this subsystem
@@ -38,14 +41,17 @@ public class ShooterSystem extends Subsystem {
     
     public void start() {
     	start(Constants.ShooterSystemConstants.SHOOTER_SPEED);
+    	d_shooterOn = true;
     }
     
     public void start(double speed) {
     	d_shooterMaster.set(speed);
+    	d_shooterOn = true;
     }
     
     public void stop() {
     	d_shooterMaster.set(0);
+    	d_shooterOn = false;
     }
     
     public void startIntake() {
@@ -54,6 +60,14 @@ public class ShooterSystem extends Subsystem {
     
     public void stopIntake() {
     	d_intake.set(0);
+    }
+    
+    public void toggleShooting() {
+    	if (d_shooterOn) {
+    		stop();
+    	} else {
+    		start();
+    	}
     }
 }
 
