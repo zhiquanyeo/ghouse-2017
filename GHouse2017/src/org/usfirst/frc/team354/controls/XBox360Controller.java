@@ -1,7 +1,5 @@
 package org.usfirst.frc.team354.controls;
 
-import org.usfirst.frc.team354.robot.Constants;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -15,6 +13,27 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  *
  */
 public class XBox360Controller extends Joystick {
+	public static final class ButtonAxisMap {
+		public static final int LEFT_STICK_X_AXIS = 0;
+		public static final int LEFT_STICK_Y_AXIS = 1;
+		public static final int RIGHT_STICK_X_AXIS = 4;
+		public static final int RIGHT_STICK_Y_AXIS = 5;
+		public static final int LEFT_TRIGGER = 2;
+		public static final int RIGHT_TRIGGER = 3;
+		
+		public static final int A_BUTTON = 1;
+		public static final int B_BUTTON = 2;
+		public static final int X_BUTTON = 3;
+		public static final int Y_BUTTON = 4;
+		public static final int LEFT_SHOULDER = 5;
+		public static final int RIGHT_SHOULDER = 6;
+		public static final int BACK_BUTTON = 7;
+		public static final int START_BUTTON = 8;
+		
+		public static final int LEFT_STICK_BUTTON = 9;
+		public static final int RIGHT_STICK_BUTTON = 10;
+	}
+	
 	private double d_deadband = 0.0;
 	
 	// Hardware buttons
@@ -40,19 +59,19 @@ public class XBox360Controller extends Joystick {
 	public XBox360Controller(int port, double deadband) {
 		super(port);
 		d_deadband = deadband;
-		d_buttonA = new JoystickButton(this, Constants.XBoxButtonMap.A_BUTTON);
-		d_buttonB = new JoystickButton(this, Constants.XBoxButtonMap.B_BUTTON);
-		d_buttonX = new JoystickButton(this, Constants.XBoxButtonMap.X_BUTTON);
-		d_buttonY = new JoystickButton(this, Constants.XBoxButtonMap.Y_BUTTON);
-		d_leftShoulder = new JoystickButton(this, Constants.XBoxButtonMap.LEFT_SHOULDER);
-		d_rightShoulder = new JoystickButton(this, Constants.XBoxButtonMap.RIGHT_SHOULDER);
-		d_buttonBack = new JoystickButton(this, Constants.XBoxButtonMap.BACK_BUTTON);
-		d_buttonStart = new JoystickButton(this, Constants.XBoxButtonMap.START_BUTTON);
-		d_leftStickButton = new JoystickButton(this, Constants.XBoxButtonMap.LEFT_STICK_BUTTON);
-		d_rightStickButton = new JoystickButton(this, Constants.XBoxButtonMap.RIGHT_STICK_BUTTON);
+		d_buttonA = new JoystickButton(this, ButtonAxisMap.A_BUTTON);
+		d_buttonB = new JoystickButton(this, ButtonAxisMap.B_BUTTON);
+		d_buttonX = new JoystickButton(this, ButtonAxisMap.X_BUTTON);
+		d_buttonY = new JoystickButton(this, ButtonAxisMap.Y_BUTTON);
+		d_leftShoulder = new JoystickButton(this, ButtonAxisMap.LEFT_SHOULDER);
+		d_rightShoulder = new JoystickButton(this, ButtonAxisMap.RIGHT_SHOULDER);
+		d_buttonBack = new JoystickButton(this, ButtonAxisMap.BACK_BUTTON);
+		d_buttonStart = new JoystickButton(this, ButtonAxisMap.START_BUTTON);
+		d_leftStickButton = new JoystickButton(this, ButtonAxisMap.LEFT_STICK_BUTTON);
+		d_rightStickButton = new JoystickButton(this, ButtonAxisMap.RIGHT_STICK_BUTTON);
 		
-		d_leftTriggerAsButton = new XBox360DigitalTrigger(this, Constants.XBoxButtonMap.LEFT_TRIGGER, 0.65);
-		d_rightTriggerAsButton = new XBox360DigitalTrigger(this, Constants.XBoxButtonMap.RIGHT_TRIGGER, 0.65);
+		d_leftTriggerAsButton = new XBox360DigitalTrigger(this, ButtonAxisMap.LEFT_TRIGGER, 0.65);
+		d_rightTriggerAsButton = new XBox360DigitalTrigger(this, ButtonAxisMap.RIGHT_TRIGGER, 0.65);
 	}
 	
 	private double fitWithinDeadband(double rawVal) {
@@ -63,27 +82,27 @@ public class XBox360Controller extends Joystick {
 	}
 	
 	public double getLeftX() {
-		return fitWithinDeadband(this.getRawAxis(Constants.XBoxButtonMap.LEFT_STICK_X_AXIS));
+		return fitWithinDeadband(this.getRawAxis(ButtonAxisMap.LEFT_STICK_X_AXIS));
 	}
 	
 	public double getLeftY() {
-		return fitWithinDeadband(this.getRawAxis(Constants.XBoxButtonMap.LEFT_STICK_Y_AXIS));
+		return fitWithinDeadband(this.getRawAxis(ButtonAxisMap.LEFT_STICK_Y_AXIS));
 	}
 	
 	public double getRightX() {
-		return fitWithinDeadband(this.getRawAxis(Constants.XBoxButtonMap.RIGHT_STICK_X_AXIS));
+		return fitWithinDeadband(this.getRawAxis(ButtonAxisMap.RIGHT_STICK_X_AXIS));
 	}
 	
 	public double getRightY() {
-		return fitWithinDeadband(this.getRawAxis(Constants.XBoxButtonMap.RIGHT_STICK_Y_AXIS));
+		return fitWithinDeadband(this.getRawAxis(ButtonAxisMap.RIGHT_STICK_Y_AXIS));
 	}
 	
 	public double getLeftTriggerAnalog() {
-		return this.getRawAxis(Constants.XBoxButtonMap.LEFT_TRIGGER);
+		return this.getRawAxis(ButtonAxisMap.LEFT_TRIGGER);
 	}
 	
 	public double getRightTriggerAnalog() {
-		return this.getRawAxis(Constants.XBoxButtonMap.RIGHT_TRIGGER);
+		return this.getRawAxis(ButtonAxisMap.RIGHT_TRIGGER);
 	}
 	
 	// Return buttons

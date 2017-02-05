@@ -9,7 +9,14 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * Encapsulation of a wiffle ball shooter consisting of a 2 motor shooting
+ * mechanism, and TBD intake motor(s) that supply the balls into the 
+ * shooting chamber
+ * 
+ * The shooting mechanism is toggelable. 
+ * 
+ * TBD: Might move to closed loop shooting control once we have the encoders 
+ * hooked up
  */
 public class ShooterSystem extends Subsystem {
 	
@@ -68,6 +75,10 @@ public class ShooterSystem extends Subsystem {
     	} else {
     		start();
     	}
+    }
+    
+    public boolean isShooterOn() {
+    	return d_shooterOn;
     }
 }
 

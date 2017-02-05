@@ -5,7 +5,6 @@ import org.usfirst.frc.team354.robot.commands.StartClimb;
 import org.usfirst.frc.team354.robot.commands.StartIntake;
 import org.usfirst.frc.team354.robot.commands.ToggleShooter;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
@@ -59,16 +58,16 @@ public class OI {
 	}
 	
 	public double getDriverGamepadLeftX() {
-		return mainGamepad.getRawAxis(Constants.XBoxButtonMap.LEFT_STICK_X_AXIS);
+		return mainGamepad.getLeftX();
 	}
 	public double getDriverGamepadLeftY() {
-		return mainGamepad.getRawAxis(Constants.XBoxButtonMap.LEFT_STICK_Y_AXIS);
+		return mainGamepad.getLeftY();
 	}
 	public double getDriverGamepadRightX() {
-		return mainGamepad.getRawAxis(Constants.XBoxButtonMap.RIGHT_STICK_X_AXIS);
+		return mainGamepad.getRightX();
 	}
 	public double getDriverGamepadRightY() {
-		return mainGamepad.getRawAxis(Constants.XBoxButtonMap.RIGHT_STICK_Y_AXIS);
+		return mainGamepad.getRightY();
 	}
 	
 	public JoystickButton getButton(int stick, int button) {
