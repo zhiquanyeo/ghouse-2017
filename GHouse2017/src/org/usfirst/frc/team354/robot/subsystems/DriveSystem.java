@@ -1,7 +1,7 @@
 package org.usfirst.frc.team354.robot.subsystems;
 
 import org.usfirst.frc.team354.robot.Constants;
-import org.usfirst.frc.team354.robot.commands.OperatorArcadeDrive;
+import org.usfirst.frc.team354.robot.commands.operator.OperatorArcadeDrive;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
