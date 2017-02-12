@@ -3,6 +3,7 @@ package org.usfirst.frc.team354.robot;
 import org.usfirst.frc.team354.controls.XBox360Controller;
 import org.usfirst.frc.team354.robot.commands.StartClimb;
 import org.usfirst.frc.team354.robot.commands.StartIntake;
+import org.usfirst.frc.team354.robot.commands.StartShooterIntake;
 import org.usfirst.frc.team354.robot.commands.ToggleShooter;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -54,7 +55,7 @@ public class OI {
 		auxGamepad.getLeftTriggerButton().whileHeld(new StartClimb());
 		
 		auxGamepad.getAButton().whenPressed(d_shooter);
-		
+		auxGamepad.getBackButton().whileHeld(new StartShooterIntake());
 	}
 	
 	public double getDriverGamepadLeftX() {
