@@ -13,9 +13,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class IntakeSystem extends Subsystem {
 	
 	private CANTalon d_intakeMotor;
+	private boolean d_intakeActive;
 	
 	public IntakeSystem() {
 		d_intakeMotor = new CANTalon(Constants.IntakeSystemConstants.CAN_ID_INTAKE_MOTOR);
+		d_intakeActive = false;
 	}
 
     public void initDefaultCommand() {
@@ -29,10 +31,25 @@ public class IntakeSystem extends Subsystem {
     
     public void start(double speed) {
     	d_intakeMotor.set(speed);
+    	d_intakeActive = true;
     }
     
     public void stop() {
     	d_intakeMotor.set(0);
+    	d_intakeActive = false;
+    }
+    
+    public boolean isActive() {
+    	return d_intakeActive;
+    }
+    
+    public void toggle() {
+    	if (d_intakeActive) {
+    		stop();
+    	}
+    	else {
+    		start();
+    	}
     }
 }
 

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team354.robot.subsystems.ClimberSystem;
 import org.usfirst.frc.team354.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team354.robot.subsystems.IntakeSystem;
+import org.usfirst.frc.team354.robot.subsystems.ShooterIntake;
 import org.usfirst.frc.team354.robot.subsystems.ShooterSystem;
 
 /**
@@ -27,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static final IntakeSystem intake = new IntakeSystem();
 	public static final ShooterSystem shooter = new ShooterSystem();
 	public static final ClimberSystem climber = new ClimberSystem();
+	public static final ShooterIntake shooterIntake = new ShooterIntake();
 	
 	public static OI oi;
 
@@ -95,6 +97,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		dumpDashboardStats();
 	}
 
 	@Override
@@ -113,6 +116,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		dumpDashboardStats();
 	}
 
 	/**
@@ -121,5 +125,14 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+	
+	private void dumpDashboardStats() {
+		// System Status
+		SmartDashboard.putBoolean("shooterActive", Robot.shooter.isActive());
+		SmartDashboard.putBoolean("shooterIntakeActive", Robot.shooterIntake.isActive());
+		SmartDashboard.putBoolean("intakeActive", Robot.intake.isActive());
+		
+		
 	}
 }
