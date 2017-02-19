@@ -56,6 +56,7 @@ public class OI {
 		auxGamepad.getAButton().whenPressed(new ToggleShooter());
 		auxGamepad.getBButton().whenPressed(new ToggleShooterIntake());
 		
+		auxGamepad.getRightShoulderButton().whileHeld(new StartShooterIntake());
 	}
 	
 	public double getDriverGamepadLeftX() {

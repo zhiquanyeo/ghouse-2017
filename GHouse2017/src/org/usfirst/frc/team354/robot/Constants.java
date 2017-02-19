@@ -18,7 +18,7 @@ public class Constants {
 	//=== IntakeSystem ===
 	public static final class IntakeSystemConstants {
 		public static final int CAN_ID_INTAKE_MOTOR = 23;
-		public static final double INTAKE_SPEED = -0.75;
+		public static final double INTAKE_SPEED = -0.85;
 	}
 	
 	//=== ShooterSystem ===
@@ -28,12 +28,12 @@ public class Constants {
 		public static final int CAN_ID_INTAKE_MOTOR = 27;
 		
 		public static final double SHOOTER_SPEED = -0.758; 
-		public static final double INTAKE_SPEED = 0.75;
+		public static final double INTAKE_SPEED = -0.8;
 	}
 	
 	//--- ClimberSystem ===
 	public static final class ClimberSystemConstants {
 		public static final int CAN_ID_CLIMBER_MASTER = 28;
-		public static final double CLIMB_SPEED = 0.5;
+		public static final double CLIMB_SPEED = -0.5;
 	}
 }
