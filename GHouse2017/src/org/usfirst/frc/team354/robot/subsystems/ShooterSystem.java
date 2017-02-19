@@ -39,7 +39,7 @@ public class ShooterSystem extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new ManualControlShooter());
+        //setDefaultCommand(new ManualControlShooter());
     }
     
     public void start() {

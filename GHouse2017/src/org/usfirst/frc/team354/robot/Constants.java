@@ -28,7 +28,7 @@ public class Constants {
 		public static final int CAN_ID_INTAKE_MOTOR = 27;
 		
 		public static final double SHOOTER_SPEED = -0.758; 
-		public static final double INTAKE_SPEED = -0.8;
+		public static final double INTAKE_SPEED = 0.8;
 	}
 	
 	//--- ClimberSystem ===
