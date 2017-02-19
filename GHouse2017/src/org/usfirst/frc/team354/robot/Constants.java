@@ -33,7 +33,8 @@ public class Constants {
 	
 	//--- ClimberSystem ===
 	public static final class ClimberSystemConstants {
-		public static final int CAN_ID_CLIMBER_MASTER = 28;
+		public static final int CAN_ID_CLIMBER_MASTER = 24;
+		public static final int CAN_ID_CLIMBER_SLAVE = 25;
 		public static final double CLIMB_SPEED = -0.5;
 	}
 }
