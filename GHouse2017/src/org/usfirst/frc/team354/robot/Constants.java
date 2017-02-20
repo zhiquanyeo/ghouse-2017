@@ -27,7 +27,8 @@ public class Constants {
 		public static final int CAN_ID_SHOOTER_SLAVE = 22;
 		public static final int CAN_ID_INTAKE_MOTOR = 27;
 		
-		public static final double SHOOTER_SPEED = -0.758; 
+		// Old -0.758
+		public static final double SHOOTER_SPEED = -0.65; // good for 80-88. For 88 - 99, use 0.7
 		public static final double INTAKE_SPEED = 0.8;
 	}
 	
