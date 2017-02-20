@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static final ShooterSystem shooter = new ShooterSystem();
 	public static final ClimberSystem climber = new ClimberSystem();
 	public static final ShooterIntake shooterIntake = new ShooterIntake();
+	public static final MaxbotixRangefinder rangefinder = new MaxbotixRangefinder(0, 0);
 	
 	public static OI oi;
 
@@ -46,7 +47,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		// Set up CameraServer
-		// CameraServer.getInstance().startAutomaticCapture();
+		CameraServer.getInstance().startAutomaticCapture();
 	}
 
 	/**
@@ -133,6 +134,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("shooterIntakeActive", Robot.shooterIntake.isActive());
 		SmartDashboard.putBoolean("intakeActive", Robot.intake.isActive());
 		
-		
+		// Distance
+		SmartDashboard.putNumber("rangefinderDistance", Robot.rangefinder.getRangeInch());
 	}
 }
