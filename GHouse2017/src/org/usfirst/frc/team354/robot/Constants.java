@@ -38,4 +38,13 @@ public class Constants {
 		public static final int CAN_ID_CLIMBER_SLAVE = 25;
 		public static final double CLIMB_SPEED = -0.5;
 	}
+	
+	public static final class DrivetrainPIDConstants {
+		public static final double P = 0.03;
+		public static final double I = 0.0;
+		public static final double D = 0.0;
+		public static final double F = 0.0;
+		
+		public static final double TOLERANCE_DEGREES = 2.0;
+	}
 }

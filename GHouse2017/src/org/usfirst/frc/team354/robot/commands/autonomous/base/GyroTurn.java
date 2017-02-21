@@ -10,45 +10,45 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class GyroStraightDriveForTime extends Command implements PIDOutput {
-	private double d_speed;
-	private long d_duration;
-	private long d_startTime;
+public class GyroTurn extends Command implements PIDOutput {
 	
 	private double d_turnToAngleRate;
 	private PIDController d_controller;
 	
-    public GyroStraightDriveForTime(double speed, long duration) {
+	private double d_angle;
+	
+    public GyroTurn(double angle) {
+    	d_angle = angle;
         requires(Robot.driveSystem);
-    	
+        
         d_controller = new PIDController(Constants.DrivetrainPIDConstants.P,
-										 Constants.DrivetrainPIDConstants.I,
-										 Constants.DrivetrainPIDConstants.D,
-										 Constants.DrivetrainPIDConstants.F,
-										 Robot.ahrs, this);
-    	d_controller.setInputRange(-180.0, 180.0);
-    	d_controller.setOutputRange(-1.0, 1.0);
-    	d_controller.setAbsoluteTolerance(Constants.DrivetrainPIDConstants.TOLERANCE_DEGREES);
-    	d_controller.setContinuous(true);
-    	
-    	d_controller.setSetpoint(0.0);
+        								 Constants.DrivetrainPIDConstants.I,
+        								 Constants.DrivetrainPIDConstants.D,
+        								 Constants.DrivetrainPIDConstants.F,
+        								 Robot.ahrs, this);
+        d_controller.setInputRange(-180.0, 180.0);
+        d_controller.setOutputRange(-1.0, 1.0);
+        d_controller.setAbsoluteTolerance(Constants.DrivetrainPIDConstants.TOLERANCE_DEGREES);
+        d_controller.setContinuous(true);
+        
+        d_controller.setSetpoint(d_angle);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.ahrs.reset();
     	d_controller.enable();
-    	d_startTime = System.currentTimeMillis();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSystem.arcadeDrive(d_speed, d_turnToAngleRate);
+    	Robot.driveSystem.arcadeDrive(0.0, d_turnToAngleRate);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (System.currentTimeMillis() - d_startTime) > d_duration;
+    	return d_controller.onTarget() || 
+    		   Math.abs(d_controller.getError()) < Constants.DrivetrainPIDConstants.TOLERANCE_DEGREES;
     }
 
     // Called once after isFinished returns true
@@ -67,6 +67,5 @@ public class GyroStraightDriveForTime extends Command implements PIDOutput {
 	@Override
 	public void pidWrite(double output) {
 		d_turnToAngleRate = output;
-		
 	}
 }
