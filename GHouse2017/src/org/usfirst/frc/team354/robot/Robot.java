@@ -3,6 +3,7 @@ package org.usfirst.frc.team354.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -14,6 +15,8 @@ import org.usfirst.frc.team354.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team354.robot.subsystems.IntakeSystem;
 import org.usfirst.frc.team354.robot.subsystems.ShooterIntake;
 import org.usfirst.frc.team354.robot.subsystems.ShooterSystem;
+
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +33,8 @@ public class Robot extends IterativeRobot {
 	public static final ClimberSystem climber = new ClimberSystem();
 	public static final ShooterIntake shooterIntake = new ShooterIntake();
 	public static final MaxbotixRangefinder rangefinder = new MaxbotixRangefinder(0, -8.0);
+	
+	public static final AHRS ahrs = new AHRS(SPI.Port.kMXP);
 	
 	public static OI oi;
 

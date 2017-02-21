@@ -11,5 +11,6 @@
 			<attribute name="javadoc_location" value="jar:file:/Users/zhiquan/wpilib/user/java/docs/CTRLib-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
