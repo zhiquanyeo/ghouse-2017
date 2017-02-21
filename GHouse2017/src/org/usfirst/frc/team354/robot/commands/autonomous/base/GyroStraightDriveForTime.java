@@ -19,7 +19,7 @@ public class GyroStraightDriveForTime extends Command implements PIDOutput {
 	private PIDController d_controller;
 	
     public GyroStraightDriveForTime(double speed, long duration) {
-        requires(Robot.driveSystem);
+    	requires(Robot.driveSystem);
     	
         d_controller = new PIDController(Constants.DrivetrainPIDConstants.P,
 										 Constants.DrivetrainPIDConstants.I,
@@ -32,6 +32,9 @@ public class GyroStraightDriveForTime extends Command implements PIDOutput {
     	d_controller.setContinuous(true);
     	
     	d_controller.setSetpoint(0.0);
+    	
+    	d_duration = duration;
+    	d_speed = speed;
     }
 
     // Called just before this Command runs the first time

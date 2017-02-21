@@ -10,6 +10,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team354.robot.commands.autonomous.base.DriveForTime;
+import org.usfirst.frc.team354.robot.commands.autonomous.base.GyroStraightDriveForTime;
+import org.usfirst.frc.team354.robot.commands.autonomous.base.GyroTurn;
+import org.usfirst.frc.team354.robot.commands.autonomous.routines.DriveToBaselineTurn;
 import org.usfirst.frc.team354.robot.subsystems.ClimberSystem;
 import org.usfirst.frc.team354.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team354.robot.subsystems.IntakeSystem;
@@ -48,7 +52,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addObject("GyroTurn 90", new GyroTurn(90.0));
+		chooser.addObject("StraightDrive", new GyroStraightDriveForTime(-0.5, 2000));
+		chooser.addObject("DumbStraightDrive", new DriveForTime(-0.5, 0.0, 2000));
+		chooser.addObject("DriveToBaselineTurn", new DriveToBaselineTurn());
+		
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		// Set up CameraServer

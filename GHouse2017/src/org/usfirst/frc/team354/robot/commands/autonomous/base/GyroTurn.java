@@ -27,7 +27,7 @@ public class GyroTurn extends Command implements PIDOutput {
         								 Constants.DrivetrainPIDConstants.F,
         								 Robot.ahrs, this);
         d_controller.setInputRange(-180.0, 180.0);
-        d_controller.setOutputRange(-1.0, 1.0);
+        d_controller.setOutputRange(-0.6, 0.6);
         d_controller.setAbsoluteTolerance(Constants.DrivetrainPIDConstants.TOLERANCE_DEGREES);
         d_controller.setContinuous(true);
         
@@ -47,8 +47,7 @@ public class GyroTurn extends Command implements PIDOutput {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return d_controller.onTarget() || 
-    		   Math.abs(d_controller.getError()) < Constants.DrivetrainPIDConstants.TOLERANCE_DEGREES;
+    	return d_controller.onTarget();
     }
 
     // Called once after isFinished returns true
