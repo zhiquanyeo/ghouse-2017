@@ -40,9 +40,9 @@ public class Constants {
 	}
 	
 	public static final class DrivetrainPIDConstants {
-		public static final double P = 0.03;
+		public static final double P = 0.05;
 		public static final double I = 0.0;
-		public static final double D = 0.0;
+		public static final double D = 0.1;
 		public static final double F = 0.0;
 		
 		public static final double TOLERANCE_DEGREES = 2.0;

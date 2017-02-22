@@ -11,6 +11,7 @@ public class StartIntake extends Command {
 
     public StartIntake() {
     	requires(Robot.intake);
+    	requires(Robot.climber);
     }
 
     // Called just before this Command runs the first time
@@ -20,6 +21,7 @@ public class StartIntake extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.intake.start();
+    	Robot.climber.start();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,11 +32,13 @@ public class StartIntake extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.intake.stop();
+    	Robot.climber.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.intake.stop();
+    	Robot.climber.stop();
     }
 }

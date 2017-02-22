@@ -28,7 +28,8 @@ public class GyroTurn extends Command implements PIDOutput {
         								 Robot.ahrs, this);
         d_controller.setInputRange(-180.0, 180.0);
         d_controller.setOutputRange(-0.6, 0.6);
-        d_controller.setAbsoluteTolerance(Constants.DrivetrainPIDConstants.TOLERANCE_DEGREES);
+        //d_controller.setAbsoluteTolerance(Constants.DrivetrainPIDConstants.TOLERANCE_DEGREES);
+        d_controller.setAbsoluteTolerance(1.0);
         d_controller.setContinuous(true);
         
         d_controller.setSetpoint(d_angle);
