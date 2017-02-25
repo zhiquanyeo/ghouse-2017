@@ -1,6 +1,9 @@
 
 package org.usfirst.frc.team354.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
@@ -10,6 +13,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.opencv.core.Mat;
 import org.usfirst.frc.team354.robot.commands.autonomous.base.DriveForTime;
 import org.usfirst.frc.team354.robot.commands.autonomous.base.GyroStraightDriveForTime;
 import org.usfirst.frc.team354.robot.commands.autonomous.base.GyroTurn;
@@ -41,6 +45,8 @@ public class Robot extends IterativeRobot {
 	public static final AHRS ahrs = new AHRS(SPI.Port.kMXP);
 	
 	public static OI oi;
+	
+	public static boolean useCamera1;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -60,7 +66,45 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		// Set up CameraServer
-		CameraServer.getInstance().startAutomaticCapture();
+		//CameraServer.getInstance().startAutomaticCapture();
+		
+		// Allow view switching via button
+		Thread t = new Thread(() -> {
+			
+			UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+			camera1.setResolution(320, 240);
+			camera1.setFPS(30);
+			
+			UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+			camera2.setResolution(320,  240);
+			camera2.setFPS(30);
+			
+			CvSink cvSink1 = CameraServer.getInstance().getVideo(camera1);
+			CvSink cvSink2 = CameraServer.getInstance().getVideo(camera2);
+			CvSource outputStream = CameraServer.getInstance().putVideo("Camera Switcher", 320, 240);
+			
+			Mat image = new Mat();
+			
+			while (!Thread.interrupted()) {
+				
+				if (useCamera1) {
+					cvSink2.setEnabled(false);
+					cvSink1.setEnabled(true);
+					cvSink1.grabFrame(image);
+				}
+				else {
+					cvSink1.setEnabled(false);
+					cvSink2.setEnabled(true);
+					cvSink2.grabFrame(image);
+				}
+				
+				//System.out.println("Putting image on output");
+				if (image.empty()) continue;
+				outputStream.putFrame(image);
+			}
+		});
+		
+		t.start();
 	}
 
 	/**

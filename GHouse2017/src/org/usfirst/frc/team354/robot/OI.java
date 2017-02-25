@@ -4,6 +4,7 @@ import org.usfirst.frc.team354.controls.XBox360Controller;
 import org.usfirst.frc.team354.robot.commands.StartClimb;
 import org.usfirst.frc.team354.robot.commands.StartIntake;
 import org.usfirst.frc.team354.robot.commands.StartShooterIntake;
+import org.usfirst.frc.team354.robot.commands.SwitchCamera;
 import org.usfirst.frc.team354.robot.commands.ToggleShooter;
 import org.usfirst.frc.team354.robot.commands.ToggleShooterIntake;
 
@@ -50,6 +51,8 @@ public class OI {
 		mainGamepad = new XBox360Controller(Constants.JoystickPorts.DRIVER_GAMEPAD_ID);
 		auxGamepad = new XBox360Controller((Constants.JoystickPorts.AUX_GAMEPAD_ID));
 		
+		mainGamepad.getAButton().whenPressed(new SwitchCamera());
+		
 		auxGamepad.getRightTriggerButton().whileHeld(new StartIntake());
 		auxGamepad.getLeftTriggerButton().whileHeld(new StartClimb());
 		
@@ -57,6 +60,10 @@ public class OI {
 		auxGamepad.getBButton().whenPressed(new ToggleShooterIntake());
 		
 		auxGamepad.getRightShoulderButton().whileHeld(new StartShooterIntake());
+	}
+	
+	public XBox360Controller getDriverGamepad() {
+		return mainGamepad;
 	}
 	
 	public double getDriverGamepadLeftX() {
