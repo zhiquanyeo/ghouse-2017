@@ -50,6 +50,8 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	
+	private static final boolean USE_MULTI_CAMERA = false;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -69,42 +71,47 @@ public class Robot extends IterativeRobot {
 		//CameraServer.getInstance().startAutomaticCapture();
 		
 		// Allow view switching via button
-		Thread t = new Thread(() -> {
-			
-			UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-			camera1.setResolution(320, 240);
-			camera1.setFPS(30);
-			
-			UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-			camera2.setResolution(320,  240);
-			camera2.setFPS(30);
-			
-			CvSink cvSink1 = CameraServer.getInstance().getVideo(camera1);
-			CvSink cvSink2 = CameraServer.getInstance().getVideo(camera2);
-			CvSource outputStream = CameraServer.getInstance().putVideo("Camera Switcher", 320, 240);
-			
-			Mat image = new Mat();
-			
-			while (!Thread.interrupted()) {
+		if (USE_MULTI_CAMERA) {
+			Thread t = new Thread(() -> {
 				
-				if (useCamera1) {
-					cvSink2.setEnabled(false);
-					cvSink1.setEnabled(true);
-					cvSink1.grabFrame(image);
-				}
-				else {
-					cvSink1.setEnabled(false);
-					cvSink2.setEnabled(true);
-					cvSink2.grabFrame(image);
-				}
+				UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+				camera1.setResolution(320, 240);
+				camera1.setFPS(30);
 				
-				//System.out.println("Putting image on output");
-				if (image.empty()) continue;
-				outputStream.putFrame(image);
-			}
-		});
-		
-		t.start();
+				UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+				camera2.setResolution(320,  240);
+				camera2.setFPS(30);
+				
+				CvSink cvSink1 = CameraServer.getInstance().getVideo(camera1);
+				CvSink cvSink2 = CameraServer.getInstance().getVideo(camera2);
+				CvSource outputStream = CameraServer.getInstance().putVideo("Camera Switcher", 320, 240);
+				
+				Mat image = new Mat();
+				
+				while (!Thread.interrupted()) {
+					
+					if (useCamera1) {
+						cvSink2.setEnabled(false);
+						cvSink1.setEnabled(true);
+						cvSink1.grabFrame(image);
+					}
+					else {
+						cvSink1.setEnabled(false);
+						cvSink2.setEnabled(true);
+						cvSink2.grabFrame(image);
+					}
+					
+					//System.out.println("Putting image on output");
+					if (image.empty()) continue;
+					outputStream.putFrame(image);
+				}
+			});
+			
+			t.start();
+		}
+		else {
+			CameraServer.getInstance().startAutomaticCapture();
+		}
 	}
 
 	/**

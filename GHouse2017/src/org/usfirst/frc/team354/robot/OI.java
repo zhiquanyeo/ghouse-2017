@@ -51,9 +51,11 @@ public class OI {
 		mainGamepad = new XBox360Controller(Constants.JoystickPorts.DRIVER_GAMEPAD_ID);
 		auxGamepad = new XBox360Controller((Constants.JoystickPorts.AUX_GAMEPAD_ID));
 		
-		mainGamepad.getAButton().whenPressed(new SwitchCamera());
+		// Uncomment to use multi-camera
+		//mainGamepad.getAButton().whenPressed(new SwitchCamera());
 		
-		auxGamepad.getRightTriggerButton().whileHeld(new StartIntake());
+		auxGamepad.getRightTriggerButton().whileHeld(new StartIntake(false));
+		auxGamepad.getYButton().whileHeld(new StartIntake(true));
 		auxGamepad.getLeftTriggerButton().whileHeld(new StartClimb());
 		
 		auxGamepad.getAButton().whenPressed(new ToggleShooter());
