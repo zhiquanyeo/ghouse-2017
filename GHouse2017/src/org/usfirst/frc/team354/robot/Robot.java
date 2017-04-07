@@ -110,7 +110,8 @@ public class Robot extends IterativeRobot {
 			t.start();
 		}
 		else {
-			CameraServer.getInstance().startAutomaticCapture();
+			CameraServer.getInstance().startAutomaticCapture(0);
+			CameraServer.getInstance().startAutomaticCapture(1);
 		}
 	}
 
