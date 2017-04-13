@@ -47,4 +47,12 @@ public class Constants {
 		
 		public static final double TOLERANCE_DEGREES = 2.0;
 	}
+	
+	public static final class AutonomousConstants {
+		public static final double SIDE_GEAR_LEFT_OF_SHIP_ANGLE = 45.0;
+		public static final double SIDE_GEAR_RIGHT_OF_SHIP_ANGLE = -45.0;
+		public static final double AUTO_SHOOT_DISTANCE_FROM_WALL = 65.0;
+		public static final double AUTO_SHOOT_BOILER_ON_LEFT_ANGLE = -135.0;
+		public static final double AUTO_SHOOT_BOILER_ON_RIGHT_ANGLE = 135.0;
+	}
 }

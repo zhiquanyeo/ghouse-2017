@@ -17,7 +17,9 @@ import org.opencv.core.Mat;
 import org.usfirst.frc.team354.robot.commands.autonomous.base.DriveForTime;
 import org.usfirst.frc.team354.robot.commands.autonomous.base.GyroStraightDriveForTime;
 import org.usfirst.frc.team354.robot.commands.autonomous.base.GyroTurn;
+import org.usfirst.frc.team354.robot.commands.autonomous.routines.AutonomousShoot;
 import org.usfirst.frc.team354.robot.commands.autonomous.routines.DriveToBaselineTurn;
+import org.usfirst.frc.team354.robot.commands.autonomous.routines.SideGear;
 import org.usfirst.frc.team354.robot.subsystems.ClimberSystem;
 import org.usfirst.frc.team354.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team354.robot.subsystems.IntakeSystem;
@@ -60,11 +62,16 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		chooser.addObject("GyroTurn 90", new GyroTurn(90.0));
+//		chooser.addObject("GyroTurn 90", new GyroTurn(90.0));
 		chooser.addObject("StraightDrive", new GyroStraightDriveForTime(-0.5, 2000));
-		chooser.addObject("DumbStraightDrive", new DriveForTime(-0.5, 0.0, 2000));
+//		chooser.addObject("DumbStraightDrive", new DriveForTime(-0.5, 0.0, 2000));
+		
 		chooser.addObject("DriveToBaselineTurn", new DriveToBaselineTurn());
 		chooser.addObject("CenterGear", new GyroStraightDriveForTime(-0.65, 1300));
+		chooser.addObject("Left of airship Gear", new SideGear(Constants.AutonomousConstants.SIDE_GEAR_LEFT_OF_SHIP_ANGLE));
+		chooser.addObject("Right of airship Gear", new SideGear(Constants.AutonomousConstants.SIDE_GEAR_RIGHT_OF_SHIP_ANGLE));
+		chooser.addObject("Boiler on left shoot", new AutonomousShoot(Constants.AutonomousConstants.AUTO_SHOOT_BOILER_ON_LEFT_ANGLE));
+		chooser.addObject("Boiler on right shoot", new AutonomousShoot(Constants.AutonomousConstants.AUTO_SHOOT_BOILER_ON_RIGHT_ANGLE));
 		
 		SmartDashboard.putData("Auto mode", chooser);
 		
