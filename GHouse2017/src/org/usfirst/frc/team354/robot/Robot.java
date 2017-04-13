@@ -64,6 +64,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("StraightDrive", new GyroStraightDriveForTime(-0.5, 2000));
 		chooser.addObject("DumbStraightDrive", new DriveForTime(-0.5, 0.0, 2000));
 		chooser.addObject("DriveToBaselineTurn", new DriveToBaselineTurn());
+		chooser.addObject("CenterGear", new GyroStraightDriveForTime(-0.65, 1300));
 		
 		SmartDashboard.putData("Auto mode", chooser);
 		

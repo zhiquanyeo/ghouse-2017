@@ -15,7 +15,7 @@ public class StartIntake extends Command {
     	requires(Robot.intake);
     	requires(Robot.climber);
     	
-    	d_invert = true;
+    	d_invert = invert;
     }
 
     // Called just before this Command runs the first time

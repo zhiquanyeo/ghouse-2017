@@ -8,12 +8,21 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class OperatorArcadeDrive extends Command {
-
+	private double d_scale = 1.0;
+	
     public OperatorArcadeDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
+    	this(1.0);
+    }
+    
+    public OperatorArcadeDrive(double scaleFactor) {
     	requires(Robot.driveSystem);
+    	
+    	d_scale = scaleFactor;
+    	if (d_scale < 0) d_scale = 0.0;
+    	if (d_scale > 1) d_scale = 1.0;
     }
 
     // Called just before this Command runs the first time
@@ -22,8 +31,8 @@ public class OperatorArcadeDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double move = Robot.oi.getDriverGamepadLeftY();
-    	double rotate = Robot.oi.getDriverGamepadRightX();
+    	double move = Robot.oi.getDriverGamepadLeftY() * d_scale;
+    	double rotate = Robot.oi.getDriverGamepadRightX() * d_scale;
     	
     	Robot.driveSystem.arcadeDrive(move, rotate);
     }

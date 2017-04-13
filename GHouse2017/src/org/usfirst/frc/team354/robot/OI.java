@@ -4,9 +4,9 @@ import org.usfirst.frc.team354.controls.XBox360Controller;
 import org.usfirst.frc.team354.robot.commands.StartClimb;
 import org.usfirst.frc.team354.robot.commands.StartIntake;
 import org.usfirst.frc.team354.robot.commands.StartShooterIntake;
-import org.usfirst.frc.team354.robot.commands.SwitchCamera;
 import org.usfirst.frc.team354.robot.commands.ToggleShooter;
 import org.usfirst.frc.team354.robot.commands.ToggleShooterIntake;
+import org.usfirst.frc.team354.robot.commands.operator.OperatorArcadeDrive;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -53,6 +53,7 @@ public class OI {
 		
 		// Uncomment to use multi-camera
 		//mainGamepad.getAButton().whenPressed(new SwitchCamera());
+		mainGamepad.getRightTriggerButton().whileHeld(new OperatorArcadeDrive(0.5));
 		
 		auxGamepad.getRightTriggerButton().whileHeld(new StartIntake(false));
 		auxGamepad.getYButton().whileHeld(new StartIntake(true));
