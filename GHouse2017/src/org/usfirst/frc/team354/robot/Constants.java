@@ -13,6 +13,10 @@ public class Constants {
 		public static final int CAN_ID_DRIVE_LEFT_SLAVE = 32;
 		public static final int CAN_ID_DRIVE_RIGHT_MASTER = 30;
 		public static final int CAN_ID_DRIVE_RIGHT_SLAVE = 20;
+		
+		public static final double EXPO_FWD = 1.5;
+		public static final double EXPO_BACK = 1.5;
+		public static final double EXPO_TURN = 1.5; // more = less sensitive around the middle
 	}
 	
 	//=== IntakeSystem ===

@@ -81,6 +81,12 @@ public class OI {
 	public double getDriverGamepadRightY() {
 		return mainGamepad.getRightY();
 	}
+	public double getDriverLeftTrigger() {
+		return mainGamepad.getLeftTriggerAnalog();
+	}
+	public double getDriverRightTrigger() {
+		return mainGamepad.getRightTriggerAnalog();
+	}
 	
 	public JoystickButton getButton(int stick, int button) {
 		switch (stick) {
